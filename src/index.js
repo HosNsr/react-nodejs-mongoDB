@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SliderLists from './Components/slides';
-import data from './SliderData';
-
-var divStyle = {}
-divStyle = data;
+import Slider from './Components/slides';
 
 ReactDOM.render(
     <section id="main-slider">
-        <SliderLists slides={divStyle} />
+        <Slider slides={[]} />
     </section>,
     document.getElementById('root')
 )
