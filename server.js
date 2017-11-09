@@ -1,7 +1,11 @@
 import config from './config';
 import apiRouter from './api';
+import sliderRouter from './api/subApi/Slider';
+import moreRouter from './api/subApi/MoreAbout';
 import express from 'express';
 import mongoose from 'mongoose';
+
+var router = express.Router();
 
 // Connect To mongoDB
 mongoose.connect("mongodb://localhost/HivaTeb");
@@ -9,8 +13,9 @@ var db = mongoose.connection;
 
 // check error connect to DB
 db.on('error', function(){
-    console.log("To run a database sum problem...!")
+    console.log("To run a database some problem...!")
 })
+
 // if connect to the mongo Console.log
 db.once("open", function(){
     console.log("MongoDB is RUN...")
@@ -26,7 +31,13 @@ server.get('/', function(request, response){
 });
 
 // When use /api in API go to apiRouter
-server.use('/api' , apiRouter)
+server.use('/api' , apiRouter);
+
+// When use /api/slider in API go to apiRouter
+server.use('/api/slider' , sliderRouter);
+
+// When use /api/moreabout in API go to apiRouter
+server.use('/api/moreabout' , moreRouter);
 
 // Use this folder to Route
 server.use(express.static(__dirname + '/public'));
