@@ -2,6 +2,8 @@ import config from './config';
 import apiRouter from './api';
 import sliderRouter from './api/subApi/Slider';
 import moreRouter from './api/subApi/MoreAbout';
+import morepropertyRouter from './api/subApi/MoreProperty';
+import somecustomerRouter from './api/subApi/SomeCustomer';
 import express from 'express';
 import mongoose from 'mongoose';
 
@@ -30,6 +32,7 @@ server.get('/', function(request, response){
     response.render('index')
 });
 
+//------------------------------ Route API --------------------------------//
 // When use /api in API go to apiRouter
 server.use('/api' , apiRouter);
 
@@ -38,6 +41,12 @@ server.use('/api/slider' , sliderRouter);
 
 // When use /api/moreabout in API go to apiRouter
 server.use('/api/moreabout' , moreRouter);
+
+// When use /api/moreproperty in API go to apiRouter
+server.use('/api/moreproperty' , morepropertyRouter);
+
+// When use /api/Somecustomer in API go to apiRouter
+server.use('/api/Somecustomer' , somecustomerRouter);
 
 // Use this folder to Route
 server.use(express.static(__dirname + '/public'));

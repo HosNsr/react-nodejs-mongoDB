@@ -18,8 +18,8 @@ class Moreabout extends React.Component{
                     more: resp.data
                 })
             })
-            .catch(console.error)
-        };
+        .catch(console.error)
+    };
         
     render(){
         return (

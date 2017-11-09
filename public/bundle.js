@@ -65,6 +65,14 @@
 	
 	var _moreabout2 = _interopRequireDefault(_moreabout);
 	
+	var _moreproperty = __webpack_require__(/*! ./Components/moreproperty */ 212);
+	
+	var _moreproperty2 = _interopRequireDefault(_moreproperty);
+	
+	var _somecustomer = __webpack_require__(/*! ./Components/somecustomer */ 213);
+	
+	var _somecustomer2 = _interopRequireDefault(_somecustomer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -79,6 +87,16 @@
 	        'section',
 	        { id: 'cta', className: 'wow fadeIn' },
 	        _react2.default.createElement(_moreabout2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'features' },
+	        _react2.default.createElement(_moreproperty2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'cta2' },
+	        _react2.default.createElement(_somecustomer2.default, null)
 	    )
 	), document.getElementById('root'));
 
@@ -24073,6 +24091,244 @@
 	}(_react2.default.Component);
 	
 	exports.default = Moreabout;
+
+/***/ }),
+/* 212 */
+/*!****************************************!*\
+  !*** ./src/Components/moreproperty.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Moreproperty = function (_React$Component) {
+	    _inherits(Moreproperty, _React$Component);
+	
+	    function Moreproperty(props) {
+	        _classCallCheck(this, Moreproperty);
+	
+	        var _this = _possibleConstructorReturn(this, (Moreproperty.__proto__ || Object.getPrototypeOf(Moreproperty)).call(this, props));
+	
+	        _this.state = {
+	            more: [],
+	            image: "",
+	            propertys: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Moreproperty, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/moreproperty').then(function (resp) {
+	                _this2.setState({
+	                    more: resp.data[0],
+	                    image: resp.data[0].backgroundImages.backgroundImage,
+	                    propertys: resp.data[0].propertys
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.more.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.more.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6 wow fadeInLeft laptop-row' },
+	                        _react2.default.createElement('img', { className: 'img-responsive', alt: '', src: this.state.image })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6 features-row' },
+	                        this.state.propertys.map(function (contest) {
+	                            return _react2.default.createElement(
+	                                'div',
+	                                { key: contest._id, className: 'media service-box wow fadeInRight' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'pull-left' },
+	                                    _react2.default.createElement('i', { className: "fa fa-" + contest.icon })
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'media-body' },
+	                                    _react2.default.createElement(
+	                                        'h4',
+	                                        { className: 'media-heading' },
+	                                        contest.titleprop
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        contest.descriptionprop
+	                                    )
+	                                )
+	                            );
+	                        })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Moreproperty;
+	}(_react2.default.Component);
+	
+	exports.default = Moreproperty;
+
+/***/ }),
+/* 213 */
+/*!****************************************!*\
+  !*** ./src/Components/somecustomer.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Somecustomer = function (_React$Component) {
+	    _inherits(Somecustomer, _React$Component);
+	
+	    function Somecustomer(props) {
+	        _classCallCheck(this, Somecustomer);
+	
+	        var _this = _possibleConstructorReturn(this, (Somecustomer.__proto__ || Object.getPrototypeOf(Somecustomer)).call(this, props));
+	
+	        _this.state = {
+	            data: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Somecustomer, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/somecustomer').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'text-center' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'wow fadeInUp', 'data-wow-duration': '300ms', 'data-wow-delay': '0ms' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'wow fadeInUp', 'data-wow-duration': '300ms', 'data-wow-delay': '100ms' },
+	                        this.state.data.description
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'wow fadeInUp', 'data-wow-duration': '300ms', 'data-wow-delay': '200ms' },
+	                        _react2.default.createElement(
+	                            'a',
+	                            { className: 'btn btn-primary btn-lg', href: '#' },
+	                            this.state.data.btntitle
+	                        )
+	                    ),
+	                    _react2.default.createElement('img', { className: 'img-responsive wow fadeIn', src: 'images/cta2/cta2-img.png', alt: '', 'data-wow-duration': '300ms', 'data-wow-delay': '300ms' })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Somecustomer;
+	}(_react2.default.Component);
+	
+	exports.default = Somecustomer;
 
 /***/ })
 /******/ ]);
