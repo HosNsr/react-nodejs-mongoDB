@@ -39,7 +39,9 @@
     "babel-preset-stage-2": "^6.17.0",
     "eslint": "^3.7.1",
     "eslint-plugin-react": "^6.4.0",
+    "file-loader": "^1.1.5",
     "nodemon": "^1.11.0",
+    "url-loader": "^0.6.2",
     "webpack": "^1.15.0"
   }
 }

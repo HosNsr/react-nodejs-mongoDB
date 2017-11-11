@@ -13,6 +13,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader'
+      },
+      {
+        test : /\.(png|jpg)&/,
+        loader : 'url-loader?limit=20000'
       }
     ]
   }

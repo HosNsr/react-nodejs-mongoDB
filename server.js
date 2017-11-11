@@ -4,6 +4,8 @@ import sliderRouter from './api/subApi/Slider';
 import moreRouter from './api/subApi/MoreAbout';
 import morepropertyRouter from './api/subApi/MoreProperty';
 import somecustomerRouter from './api/subApi/SomeCustomer';
+import servicesRouter from './api/subApi/Services';
+import portfolioRouter from './api/subApi/Portfolio';
 import express from 'express';
 import mongoose from 'mongoose';
 
@@ -47,6 +49,12 @@ server.use('/api/moreproperty' , morepropertyRouter);
 
 // When use /api/Somecustomer in API go to apiRouter
 server.use('/api/Somecustomer' , somecustomerRouter);
+
+// When use /api/services in API go to apiRouter
+server.use('/api/services' , servicesRouter);
+
+// When use /api/portfolio in API go to apiRouter
+server.use('/api/portfolio' , portfolioRouter);
 
 // Use this folder to Route
 server.use(express.static(__dirname + '/public'));

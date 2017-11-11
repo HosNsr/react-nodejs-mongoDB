@@ -73,6 +73,14 @@
 	
 	var _somecustomer2 = _interopRequireDefault(_somecustomer);
 	
+	var _services = __webpack_require__(/*! ./Components/services */ 214);
+	
+	var _services2 = _interopRequireDefault(_services);
+	
+	var _portfolio = __webpack_require__(/*! ./Components/portfolio */ 215);
+	
+	var _portfolio2 = _interopRequireDefault(_portfolio);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -97,6 +105,16 @@
 	        'section',
 	        { id: 'cta2' },
 	        _react2.default.createElement(_somecustomer2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'services' },
+	        _react2.default.createElement(_services2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'portfolio' },
+	        _react2.default.createElement(_portfolio2.default, null)
 	    )
 	), document.getElementById('root'));
 
@@ -24329,6 +24347,293 @@
 	}(_react2.default.Component);
 	
 	exports.default = Somecustomer;
+
+/***/ }),
+/* 214 */
+/*!************************************!*\
+  !*** ./src/Components/services.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Services = function (_React$Component) {
+	    _inherits(Services, _React$Component);
+	
+	    function Services(props) {
+	        _classCallCheck(this, Services);
+	
+	        var _this = _possibleConstructorReturn(this, (Services.__proto__ || Object.getPrototypeOf(Services)).call(this, props));
+	
+	        _this.state = {
+	            result: [],
+	            services: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Services, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/services').then(function (resp) {
+	                _this2.setState({
+	                    result: resp.data,
+	                    services: resp.data.myservices
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.result.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.result.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'features' },
+	                        this.state.services.map(function (contest) {
+	                            return _react2.default.createElement(
+	                                'div',
+	                                { key: contest._id.toString(), className: 'col-md-4 col-sm-6 wow fadeInUp', 'data-wow-duration': '300ms', 'data-wow-delay': '0ms' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'media service-box' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'pull-left' },
+	                                        _react2.default.createElement('i', { className: "fa fa-" + contest.icon })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'media-body' },
+	                                        _react2.default.createElement(
+	                                            'h4',
+	                                            { className: 'media-heading' },
+	                                            contest.title
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            null,
+	                                            contest.description
+	                                        )
+	                                    )
+	                                )
+	                            );
+	                        })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Services;
+	}(_react2.default.Component);
+	
+	exports.default = Services;
+
+/***/ }),
+/* 215 */
+/*!*************************************!*\
+  !*** ./src/Components/portfolio.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Portfolio = function (_React$Component) {
+	    _inherits(Portfolio, _React$Component);
+	
+	    function Portfolio(props) {
+	        _classCallCheck(this, Portfolio);
+	
+	        var _this = _possibleConstructorReturn(this, (Portfolio.__proto__ || Object.getPrototypeOf(Portfolio)).call(this, props));
+	
+	        _this.state = {
+	            data: [],
+	            menu: [],
+	            posts: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Portfolio, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/portfolio').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data,
+	                    menu: resp.data.menuselect,
+	                    posts: resp.data.posts
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'text-center' },
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { className: 'portfolio-filter' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { className: 'active', href: '#', 'data-filter': '*' },
+	                                '\u0647\u0645\u0647'
+	                            )
+	                        ),
+	                        this.state.menu.map(function (contest) {
+	                            return _react2.default.createElement(
+	                                'li',
+	                                { key: contest._id.toString() },
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '#', 'data-filter': "." + contest.datafilter },
+	                                    contest.title
+	                                )
+	                            );
+	                        })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'portfolio-items' },
+	                    this.state.posts.map(function (contest) {
+	                        return _react2.default.createElement(
+	                            'div',
+	                            { key: contest._id.toString(), className: "portfolio-item " + contest.classList },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'portfolio-item-inner' },
+	                                _react2.default.createElement('img', { className: 'img-responsive', src: "images/portfolio/" + contest.imgUrl, alt: '' }),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'portfolio-info' },
+	                                    _react2.default.createElement(
+	                                        'h3',
+	                                        null,
+	                                        contest.title
+	                                    ),
+	                                    contest.description,
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        { className: 'preview', href: 'images/portfolio/full.jpg', rel: 'prettyPhoto' },
+	                                        _react2.default.createElement('i', { className: 'fa fa-eye' })
+	                                    )
+	                                )
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Portfolio;
+	}(_react2.default.Component);
+	
+	exports.default = Portfolio;
 
 /***/ })
 /******/ ]);

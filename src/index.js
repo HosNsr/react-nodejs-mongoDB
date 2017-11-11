@@ -4,6 +4,8 @@ import Slider from './Components/slides';
 import Moreabout from './Components/moreabout';
 import Moreproperty from './Components/moreproperty';
 import Somecustomer from './Components/somecustomer';
+import Services from './Components/services';
+import Portfolio from './Components/portfolio';
 
 ReactDOM.render(
     <div>
@@ -18,6 +20,12 @@ ReactDOM.render(
         </section>
         <section id="cta2">
             <Somecustomer />
+        </section>
+        <section id="services" >
+            <Services />
+        </section>
+        <section id="portfolio">
+            <Portfolio />
         </section>
     </div>,
     document.getElementById('root')
