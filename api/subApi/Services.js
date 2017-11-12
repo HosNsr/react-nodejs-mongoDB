@@ -23,7 +23,7 @@ var NewServices = mongoose.model("Services" , ServicesData);
 
 // router use /api/slider
 router.get('/', (request, response) => {
-    NewServices.findOne({}, function(err, result){
+    NewServices.findOne({}, (err, result)=>{
         if(err){ return console.error}
         response.send(result);
     });

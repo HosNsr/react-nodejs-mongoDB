@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // creat a new Router
 const router = express.Router();
 
-// ------------------- schema for SLIDER ----------------------------
+// ------------------- schema for Portfolio ----------------------------
 // schema for my data in mongoDB
 const PortfolioSchema = new mongoose.Schema({
     title : String,
@@ -30,7 +30,7 @@ var newPortfolio = mongoose.model("Portfolio" , PortfolioSchema);
 
 // router use /api/slider
 router.get('/', (request, response) => {
-    newPortfolio.findOne({}, function(err, result){
+    newPortfolio.findOne({}, (err, result)=>{
         if(err){ return console.error}
         response.send(result);
     });

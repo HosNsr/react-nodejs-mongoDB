@@ -4,20 +4,25 @@ import mongoose from 'mongoose';
 // creat a new Router
 const router = express.Router();
 
-// ------------------- schema for MOREABOUT ----------------------------
+// ------------------- schema for Workprocess ----------------------------
 // schema for my data in mongoDB
-const moreAbout = new mongoose.Schema({
+const WorkprocessSchema = new mongoose.Schema({
     title : String,
     description : String,
-    btntitle : String,
+    processes : [
+        {
+            name : String,
+            icon : String,
+        }
+    ]
 });
 
 // create a new model with schema
-var More = mongoose.model("MoreAbout" , moreAbout);
+var newWorkprocess = mongoose.model("Workprocess" , WorkprocessSchema);
 
-// router use /api/moreabout
+// router use /api/slider
 router.get('/', (request, response) => {
-    More.findOne({}, (err, result)=>{
+    newWorkprocess.findOne({}, (err, result)=>{
         if(err){ return console.error}
         response.send(result);
     });

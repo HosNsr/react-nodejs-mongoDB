@@ -81,6 +81,18 @@
 	
 	var _portfolio2 = _interopRequireDefault(_portfolio);
 	
+	var _about = __webpack_require__(/*! ./Components/about */ 216);
+	
+	var _about2 = _interopRequireDefault(_about);
+	
+	var _workProcess = __webpack_require__(/*! ./Components/work-process */ 217);
+	
+	var _workProcess2 = _interopRequireDefault(_workProcess);
+	
+	var _meetTeam = __webpack_require__(/*! ./Components/meet-team */ 218);
+	
+	var _meetTeam2 = _interopRequireDefault(_meetTeam);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -115,6 +127,21 @@
 	        'section',
 	        { id: 'portfolio' },
 	        _react2.default.createElement(_portfolio2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'about' },
+	        _react2.default.createElement(_about2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'work-process' },
+	        _react2.default.createElement(_workProcess2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'meet-team' },
+	        _react2.default.createElement(_meetTeam2.default, null)
 	    )
 	), document.getElementById('root'));
 
@@ -24634,6 +24661,657 @@
 	}(_react2.default.Component);
 	
 	exports.default = Portfolio;
+
+/***/ }),
+/* 216 */
+/*!*********************************!*\
+  !*** ./src/Components/about.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var About = function (_React$Component) {
+	    _inherits(About, _React$Component);
+	
+	    function About(props) {
+	        _classCallCheck(this, About);
+	
+	        var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this, props));
+	
+	        _this.state = {
+	            data: [],
+	            video: [],
+	            briefintroduction: [],
+	            propertic: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(About, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/about').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data,
+	                    video: resp.data.video,
+	                    briefintroduction: resp.data.briefintroduction,
+	                    propertic: resp.data.briefintroduction.propertic
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.titile
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6 wow fadeInLeft' },
+	                        _react2.default.createElement(
+	                            'h3',
+	                            { className: 'column-title' },
+	                            this.state.video.titile
+	                        ),
+	                        _react2.default.createElement('div', { className: 'embed-responsive embed-responsive-16by9' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6 wow fadeInRight' },
+	                        _react2.default.createElement(
+	                            'h3',
+	                            { className: 'column-title' },
+	                            this.state.briefintroduction.titile
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            this.state.briefintroduction.description
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'row' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-sm-6' },
+	                                _react2.default.createElement(
+	                                    'ul',
+	                                    { className: 'nostyle' },
+	                                    this.state.propertic.map(function (contest, number) {
+	                                        if (number < 2) {
+	                                            return _react2.default.createElement(
+	                                                'li',
+	                                                { key: contest._id.toString() },
+	                                                _react2.default.createElement('i', { className: 'fa fa-check-square' }),
+	                                                " " + contest.name
+	                                            );
+	                                        }
+	                                    })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'col-sm-6' },
+	                                _react2.default.createElement(
+	                                    'ul',
+	                                    { className: 'nostyle' },
+	                                    this.state.propertic.map(function (contest, number) {
+	                                        if (number > 1) {
+	                                            return _react2.default.createElement(
+	                                                'li',
+	                                                { key: contest._id.toString() },
+	                                                _react2.default.createElement('i', { className: 'fa fa-check-square' }),
+	                                                " " + contest.name
+	                                            );
+	                                        }
+	                                    })
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { className: 'btn btn-primary', href: '#' },
+	                            this.state.data.btntitile
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return About;
+	}(_react2.default.Component);
+	
+	exports.default = About;
+
+/***/ }),
+/* 217 */
+/*!****************************************!*\
+  !*** ./src/Components/work-process.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Workprocess = function (_React$Component) {
+	    _inherits(Workprocess, _React$Component);
+	
+	    function Workprocess(props) {
+	        _classCallCheck(this, Workprocess);
+	
+	        var _this = _possibleConstructorReturn(this, (Workprocess.__proto__ || Object.getPrototypeOf(Workprocess)).call(this, props));
+	
+	        _this.state = {
+	            data: [],
+	            processes: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Workprocess, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/workprocess').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data,
+	                    processes: resp.data.processes
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row text-center' },
+	                    this.state.processes.map(function (contest, number) {
+	                        return _react2.default.createElement(
+	                            'div',
+	                            { key: contest._id.toString(), className: 'col-md-2 col-md-4 col-xs-6' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'wow fadeInUp', 'data-wow-duration': '400ms', 'data-wow-delay': '0ms' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'icon-circle' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        number + 1
+	                                    ),
+	                                    _react2.default.createElement('i', { className: "fa fa-" + contest.icon + " fa-2x" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    'h3',
+	                                    null,
+	                                    contest.name
+	                                )
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Workprocess;
+	}(_react2.default.Component);
+	
+	exports.default = Workprocess;
+
+/***/ }),
+/* 218 */
+/*!*************************************!*\
+  !*** ./src/Components/meet-team.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Meetteam = function (_React$Component) {
+	    _inherits(Meetteam, _React$Component);
+	
+	    function Meetteam(props) {
+	        _classCallCheck(this, Meetteam);
+	
+	        var _this = _possibleConstructorReturn(this, (Meetteam.__proto__ || Object.getPrototypeOf(Meetteam)).call(this, props));
+	
+	        _this.state = {
+	            data: {},
+	            people: [],
+	            abilityname: "",
+	            ability: [],
+	            historyname: "",
+	            history: [],
+	            qaname: "",
+	            qa: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Meetteam, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/meetteam').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data,
+	                    people: resp.data.people,
+	                    abilityname: resp.data.ability.title,
+	                    ability: resp.data.ability.lists,
+	                    historyname: resp.data.history.title,
+	                    history: resp.data.history.lists,
+	                    qaname: resp.data.qa.title,
+	                    qa: resp.data.qa.lists
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    this.state.people.map(function (contest) {
+	                        return _react2.default.createElement(
+	                            'div',
+	                            { key: contest._id.toString(), className: 'col-sm-6 col-md-3' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'team-member wow fadeInUp', 'data-wow-duration': '400ms', 'data-wow-delay': '0ms' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'team-img' },
+	                                    _react2.default.createElement('img', { className: 'img-responsive', src: "images/team/" + contest.imgUrl, alt: '' })
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'team-info' },
+	                                    _react2.default.createElement(
+	                                        'h3',
+	                                        null,
+	                                        contest.name
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        contest.position
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    null,
+	                                    contest.moreAbout
+	                                ),
+	                                _react2.default.createElement(
+	                                    'ul',
+	                                    { className: 'social-icons' },
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '#' },
+	                                            _react2.default.createElement('i', { className: 'fa fa-facebook' })
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '#' },
+	                                            _react2.default.createElement('i', { className: 'fa fa-twitter' })
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '#' },
+	                                            _react2.default.createElement('i', { className: 'fa fa-google-plus' })
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '#' },
+	                                            _react2.default.createElement('i', { className: 'fa fa-linkedin' })
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        );
+	                    })
+	                ),
+	                _react2.default.createElement('div', { className: 'divider' }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-4' },
+	                        _react2.default.createElement(
+	                            'h3',
+	                            { className: 'column-title' },
+	                            this.state.abilityname
+	                        ),
+	                        this.state.ability.map(function (contest) {
+	                            return _react2.default.createElement(
+	                                'div',
+	                                { key: contest._id.toString() },
+	                                _react2.default.createElement(
+	                                    'strong',
+	                                    null,
+	                                    contest.title
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'progress' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'progress-bar progress-bar-primary', role: 'progressbar', 'data-width': contest.rate },
+	                                        contest.rate,
+	                                        '%'
+	                                    )
+	                                )
+	                            );
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-4' },
+	                        _react2.default.createElement(
+	                            'h3',
+	                            { className: 'column-title' },
+	                            this.state.historyname
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { role: 'tabpanel' },
+	                            _react2.default.createElement(
+	                                'ul',
+	                                { className: 'nav main-tab nav-justified', role: 'tablist' },
+	                                _react2.default.createElement(
+	                                    'li',
+	                                    { role: 'presentation', className: 'active' },
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        { href: '#tab1', role: 'tab', 'data-toggle': 'tab', 'aria-controls': 'tab1', 'aria-expanded': 'true' },
+	                                        '1390'
+	                                    )
+	                                ),
+	                                this.state.history.map(function (contest, number) {
+	                                    return _react2.default.createElement(
+	                                        'li',
+	                                        { key: contest._id.toString(), role: 'presentation' },
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: "#tab" + number + 2, role: 'tab', 'data-toggle': 'tab', 'aria-controls': "tab" + number + 2, 'aria-expanded': 'false' },
+	                                            contest.year
+	                                        )
+	                                    );
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { id: 'tab-content', className: 'tab-content' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { role: 'tabpanel', className: 'tab-pane fade active in', id: 'tab1', 'aria-labelledby': 'tab1' },
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        '\u0644\u0648\u0631\u0645 \u0627\u06CC\u067E\u0633\u0648\u0645 \u0645\u062A\u0646 \u0633\u0627\u062E\u062A\u06AF\u06CC \u0628\u0627 \u062A\u0648\u0644\u06CC\u062F \u0633\u0627\u062F\u06AF\u06CC \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \u0627\u0632 \u0635\u0646\u0639\u062A \u0686\u0627\u067E \u0648 \u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632 \u0637\u0631\u0627\u062D\u0627\u0646 \u06AF\u0631\u0627\u0641\u06CC\u06A9 \u0627\u0633\u062A. \u0686\u0627\u067E\u06AF\u0631\u0647\u0627 \u0648 \u0645\u062A\u0648\u0646 \u0628\u0644\u06A9\u0647 \u0631\u0648\u0632\u0646\u0627\u0645\u0647'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        null,
+	                                        '\u0648 \u0645\u062C\u0644\u0647 \u062F\u0631 \u0633\u062A\u0648\u0646 \u0648 \u0633\u0637\u0631\u0622\u0646\u0686\u0646\u0627\u0646 \u06A9\u0647 \u0644\u0627\u0632\u0645 \u0627\u0633\u062A \u0648 \u0628\u0631\u0627\u06CC \u0634\u0631\u0627\u06CC\u0637 \u0641\u0639\u0644\u06CC \u062A\u06A9\u0646\u0648\u0644\u0648\u0698\u06CC \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632 \u0648 \u06A9\u0627\u0631\u0628\u0631\u062F\u0647\u0627\u06CC \u0645\u062A\u0646\u0648\u0639 \u0628\u0627 \u0647\u062F\u0641 \u0628\u0647\u0628\u0648\u062F'
+	                                    )
+	                                ),
+	                                this.state.history.map(function (contest, number) {
+	                                    return _react2.default.createElement(
+	                                        'div',
+	                                        { key: contest._id.toString(), role: 'tabpanel', className: 'tab-pane fade', id: "tab" + number + 2, 'aria-labelledby': "tab" + number + 2 },
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            null,
+	                                            contest.description
+	                                        )
+	                                    );
+	                                })
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-4' },
+	                        _react2.default.createElement('h3', { className: 'column-title' }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'panel-group', id: 'accordion', role: 'tablist', 'aria-multiselectable': 'true' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'panel panel-default' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'panel-heading', role: 'tab', id: 'headingOne' },
+	                                    _react2.default.createElement(
+	                                        'h4',
+	                                        { className: 'panel-title' },
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapseOne', 'aria-expanded': 'true', 'aria-controls': 'collapseOne' },
+	                                            '\u0631\u0648\u0634 \u0633\u0641\u0627\u0631\u0634 \u0637\u0631\u0627\u062D\u06CC'
+	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { id: 'collapseOne', className: 'panel-collapse collapse in', role: 'tabpanel', 'aria-labelledby': 'headingOne' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'panel-body' },
+	                                        '\u0644\u0648\u0631\u0645 \u0627\u06CC\u067E\u0633\u0648\u0645 \u0645\u062A\u0646 \u0633\u0627\u062E\u062A\u06AF\u06CC \u0628\u0627 \u062A\u0648\u0644\u06CC\u062F \u0633\u0627\u062F\u06AF\u06CC \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \u0627\u0632 \u0635\u0646\u0639\u062A \u0686\u0627\u067E \u0648 \u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632 \u0637\u0631\u0627\u062D\u0627\u0646 \u06AF\u0631\u0627\u0641\u06CC\u06A9 \u0627\u0633\u062A. \u0686\u0627\u067E\u06AF\u0631\u0647\u0627 \u0648 \u0645\u062A\u0648\u0646 \u0628\u0644\u06A9\u0647 \u0631\u0648\u0632\u0646\u0627\u0645\u0647 \u0648 \u0645\u062C\u0644\u0647 \u062F\u0631 \u0633\u062A\u0648\u0646 \u0648 \u0633\u0637\u0631\u0622\u0646\u0686\u0646\u0627\u0646 \u06A9\u0647 \u0644\u0627\u0632\u0645 \u0627\u0633\u062A \u0648 \u0628\u0631\u0627\u06CC \u0634\u0631\u0627\u06CC\u0637 \u0641\u0639\u0644\u06CC \u062A\u06A9\u0646\u0648\u0644\u0648\u0698\u06CC \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632 \u0648 \u06A9\u0627\u0631\u0628\u0631\u062F\u0647\u0627\u06CC \u0645\u062A\u0646\u0648\u0639'
+	                                    )
+	                                )
+	                            ),
+	                            this.state.qa.map(function (contest, number) {
+	                                if (number + 2 == 2) {
+	                                    contest.idnumber = "Two";
+	                                } else {
+	                                    contest.idnumber = "Three";
+	                                }
+	                                console.log(contest.idnumber);
+	                                return _react2.default.createElement(
+	                                    'div',
+	                                    { key: contest._id.toString(), className: 'panel panel-default' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'panel-heading', role: 'tab', id: "heading" + contest.idnumber },
+	                                        _react2.default.createElement(
+	                                            'h4',
+	                                            { className: 'panel-title' },
+	                                            _react2.default.createElement(
+	                                                'a',
+	                                                { className: 'collapsed', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: "#collapse" + contest.idnumber, 'aria-expanded': 'false', 'aria-controls': "collapse" + contest.idnumber },
+	                                                contest.title
+	                                            )
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { id: "collapse" + contest.idnumber, className: 'panel-collapse collapse', role: 'tabpanel', 'aria-labelledby': contest.idnumber },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'panel-body' },
+	                                            contest.description
+	                                        )
+	                                    )
+	                                );
+	                            })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Meetteam;
+	}(_react2.default.Component);
+	
+	exports.default = Meetteam;
 
 /***/ })
 /******/ ]);

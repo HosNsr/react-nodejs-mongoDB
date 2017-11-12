@@ -6,6 +6,9 @@ import Moreproperty from './Components/moreproperty';
 import Somecustomer from './Components/somecustomer';
 import Services from './Components/services';
 import Portfolio from './Components/portfolio';
+import About from './Components/about';
+import Workprocess from './Components/work-process';
+import Meetteam from './Components/meet-team';
 
 ReactDOM.render(
     <div>
@@ -26,6 +29,15 @@ ReactDOM.render(
         </section>
         <section id="portfolio">
             <Portfolio />
+        </section>
+        <section id="about">
+            <About />
+        </section>
+        <section id="work-process">
+            <Workprocess />
+        </section>
+        <section id="meet-team">
+            <Meetteam />
         </section>
     </div>,
     document.getElementById('root')

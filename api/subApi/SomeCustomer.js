@@ -17,7 +17,7 @@ var newSomeCustomer = mongoose.model("SomeCustomer" , SomeCustomerSchema);
 
 // router use /api/slider
 router.get('/', (request, response) => {
-    newSomeCustomer.findOne({}, function(err, result){
+    newSomeCustomer.findOne({}, (err, result)=>{
         if(err){ return console.error}
         response.send(result);
     });

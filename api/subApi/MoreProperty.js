@@ -26,7 +26,7 @@ var MoreProp = mongoose.model("MorePrperty" , moreAbout);
 
 // router use /api/moreproperty
 router.get('/', (request, response) => {
-    MoreProp.find({}, function(err, result){
+    MoreProp.find({}, (err, result)=>{
         if(err){ return console.error}
         response.send(result);
     });

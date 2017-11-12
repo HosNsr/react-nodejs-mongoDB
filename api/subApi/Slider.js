@@ -20,7 +20,7 @@ var newSlider = mongoose.model("OneSlid" , slidersData);
 
 // router use /api/slider
 router.get('/', (request, response) => {
-    newSlider.find({}, function(err, result){
+    newSlider.find({}, (err, result) =>{
         if(err){ return console.error}
         response.send(result);
     });

@@ -6,6 +6,9 @@ import morepropertyRouter from './api/subApi/MoreProperty';
 import somecustomerRouter from './api/subApi/SomeCustomer';
 import servicesRouter from './api/subApi/Services';
 import portfolioRouter from './api/subApi/Portfolio';
+import aboutRouter from './api/subApi/About';
+import workprocessRouter from './api/subApi/Workprocess';
+import meetteamRouter from './api/subApi/MeetTeam';
 import express from 'express';
 import mongoose from 'mongoose';
 
@@ -55,6 +58,15 @@ server.use('/api/services' , servicesRouter);
 
 // When use /api/portfolio in API go to apiRouter
 server.use('/api/portfolio' , portfolioRouter);
+
+// When use /api/about in API go to apiRouter
+server.use('/api/about' , aboutRouter);
+
+// When use /api/workprocess in API go to apiRouter
+server.use('/api/workprocess' , workprocessRouter);
+
+// When use /api/meetteam in API go to apiRouter
+server.use('/api/meetteam' , meetteamRouter);
 
 // Use this folder to Route
 server.use(express.static(__dirname + '/public'));
