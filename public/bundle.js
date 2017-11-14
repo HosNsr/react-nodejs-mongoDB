@@ -93,6 +93,18 @@
 	
 	var _meetTeam2 = _interopRequireDefault(_meetTeam);
 	
+	var _animatedNumber = __webpack_require__(/*! ./Components/animated-number */ 219);
+	
+	var _animatedNumber2 = _interopRequireDefault(_animatedNumber);
+	
+	var _testimonial = __webpack_require__(/*! ./Components/testimonial */ 220);
+	
+	var _testimonial2 = _interopRequireDefault(_testimonial);
+	
+	var _blog = __webpack_require__(/*! ./Components/blog */ 221);
+	
+	var _blog2 = _interopRequireDefault(_blog);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -142,6 +154,21 @@
 	        'section',
 	        { id: 'meet-team' },
 	        _react2.default.createElement(_meetTeam2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'animated-number' },
+	        _react2.default.createElement(_animatedNumber2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'testimonial' },
+	        _react2.default.createElement(_testimonial2.default, null)
+	    ),
+	    _react2.default.createElement(
+	        'section',
+	        { id: 'blog' },
+	        _react2.default.createElement(_blog2.default, null)
 	    )
 	), document.getElementById('root'));
 
@@ -25273,7 +25300,6 @@
 	                                } else {
 	                                    contest.idnumber = "Three";
 	                                }
-	                                console.log(contest.idnumber);
 	                                return _react2.default.createElement(
 	                                    'div',
 	                                    { key: contest._id.toString(), className: 'panel panel-default' },
@@ -25312,6 +25338,587 @@
 	}(_react2.default.Component);
 	
 	exports.default = Meetteam;
+
+/***/ }),
+/* 219 */
+/*!*******************************************!*\
+  !*** ./src/Components/animated-number.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Animatednumber = function (_React$Component) {
+	    _inherits(Animatednumber, _React$Component);
+	
+	    function Animatednumber(props) {
+	        _classCallCheck(this, Animatednumber);
+	
+	        var _this = _possibleConstructorReturn(this, (Animatednumber.__proto__ || Object.getPrototypeOf(Animatednumber)).call(this, props));
+	
+	        _this.state = {
+	            data: {
+	                lists: []
+	            }
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Animatednumber, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/animatednumber').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row text-center' },
+	                    this.state.data.lists.map(function (contest) {
+	                        return _react2.default.createElement(
+	                            'div',
+	                            { key: contest._id.toString(), className: 'col-sm-3 col-xs-6' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'wow fadeInUp', 'data-wow-duration': '400ms', 'data-wow-delay': '0ms' },
+	                                _react2.default.createElement('div', { className: 'animated-number', 'data-digit': contest.number, 'data-duration': '1000' }),
+	                                _react2.default.createElement(
+	                                    'strong',
+	                                    null,
+	                                    contest.name
+	                                )
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Animatednumber;
+	}(_react2.default.Component);
+	
+	exports.default = Animatednumber;
+
+/***/ }),
+/* 220 */
+/*!***************************************!*\
+  !*** ./src/Components/testimonial.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Testimonial = function (_React$Component) {
+	    _inherits(Testimonial, _React$Component);
+	
+	    function Testimonial(props) {
+	        _classCallCheck(this, Testimonial);
+	
+	        var _this = _possibleConstructorReturn(this, (Testimonial.__proto__ || Object.getPrototypeOf(Testimonial)).call(this, props));
+	
+	        _this.state = {
+	            data: []
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Testimonial, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/testimonial').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-8 col-sm-offset-2' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'carousel-testimonial', className: 'carousel slide text-center', 'data-ride': 'carousel' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'carousel-inner', role: 'listbox' },
+	                                this.state.data.map(function (contest, number) {
+	                                    if (number == 0) {
+	                                        return _react2.default.createElement(
+	                                            'div',
+	                                            { key: contest._id.toString(), className: 'item active' },
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                _react2.default.createElement('img', { className: 'img-circle img-thumbnail', src: "images/testimonial/" + contest[0].imgUrl, alt: '' })
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'h4',
+	                                                null,
+	                                                contest[0].name
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'small',
+	                                                null,
+	                                                contest[0].position
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                contest[0].description
+	                                            )
+	                                        );
+	                                    } else {
+	                                        return _react2.default.createElement(
+	                                            'div',
+	                                            { key: contest._id.toString(), className: 'item' },
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                _react2.default.createElement('img', { className: 'img-circle img-thumbnail', src: "images/testimonial/" + contest[0].imgUrl, alt: '' })
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'h4',
+	                                                null,
+	                                                contest[0].name
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'small',
+	                                                null,
+	                                                contest[0].position
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                contest[0].description
+	                                            )
+	                                        );
+	                                    }
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'btns' },
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { className: 'btn btn-primary btn-sm', href: '#carousel-testimonial', role: 'button', 'data-slide': 'prev' },
+	                                    _react2.default.createElement('span', { className: 'fa fa-angle-left', 'aria-hidden': 'true' }),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'sr-only' },
+	                                        '\u0642\u0628\u0644'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { className: 'btn btn-primary btn-sm', href: '#carousel-testimonial', role: 'button', 'data-slide': 'next' },
+	                                    _react2.default.createElement('span', { className: 'fa fa-angle-right', 'aria-hidden': 'true' }),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'sr-only' },
+	                                        '\u0628\u0639\u062F'
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Testimonial;
+	}(_react2.default.Component);
+	
+	exports.default = Testimonial;
+
+/***/ }),
+/* 221 */
+/*!********************************!*\
+  !*** ./src/Components/blog.js ***!
+  \********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 37);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 185);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _config = __webpack_require__(/*! ../../config */ 210);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Blog = function (_React$Component) {
+	    _inherits(Blog, _React$Component);
+	
+	    function Blog(props) {
+	        _classCallCheck(this, Blog);
+	
+	        var _this = _possibleConstructorReturn(this, (Blog.__proto__ || Object.getPrototypeOf(Blog)).call(this, props));
+	
+	        _this.state = {
+	            data: {
+	                posts: []
+	            }
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Blog, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get(_config2.default.getServerURL() + '/api/blog').then(function (resp) {
+	                _this2.setState({
+	                    data: resp.data
+	                });
+	            }).catch(console.error);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'section-header' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        { className: 'section-title text-center wow fadeInDown' },
+	                        this.state.data.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'text-center wow fadeInDown' },
+	                        this.state.data.description
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    this.state.data.posts.map(function (posts, number) {
+	                        if (number == 0) {
+	                            return _react2.default.createElement(
+	                                'div',
+	                                { key: posts._id.toString(), className: 'col-sm-6' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'blog-post blog-large wow fadeInLeft', 'data-wow-duration': '300ms', 'data-wow-delay': '0ms' },
+	                                    _react2.default.createElement(
+	                                        'article',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'header',
+	                                            { className: 'entry-header' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'entry-thumbnail' },
+	                                                _react2.default.createElement('img', { className: 'img-responsive', src: "images/blog/" + posts.imgUrl, alt: '' }),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'post-format post-format-video' },
+	                                                    _react2.default.createElement('i', { className: "fa fa-" + posts.icon })
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'entry-date' },
+	                                                '1394 / 7 / 5'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'h2',
+	                                                { className: 'entry-title' },
+	                                                _react2.default.createElement(
+	                                                    'a',
+	                                                    { href: '#' },
+	                                                    posts.title
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'entry-content' },
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                posts.description
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'a',
+	                                                { className: 'btn btn-primary', href: '#' },
+	                                                posts.btnTitle
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'footer',
+	                                            { className: 'entry-meta' },
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'entry-author' },
+	                                                _react2.default.createElement('i', { className: 'fa fa-pencil' }),
+	                                                ' ',
+	                                                _react2.default.createElement(
+	                                                    'a',
+	                                                    { href: '#' },
+	                                                    posts.author
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'entry-category' },
+	                                                _react2.default.createElement('i', { className: 'fa fa-folder-o' }),
+	                                                ' ',
+	                                                _react2.default.createElement(
+	                                                    'a',
+	                                                    { href: '#' },
+	                                                    [posts.category]
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'entry-comments' },
+	                                                _react2.default.createElement('i', { className: 'fa fa-comments-o' }),
+	                                                ' ',
+	                                                _react2.default.createElement(
+	                                                    'a',
+	                                                    { href: '#' },
+	                                                    posts.comments
+	                                                )
+	                                            )
+	                                        )
+	                                    )
+	                                )
+	                            );
+	                        }
+	                    }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-6' },
+	                        this.state.data.posts.map(function (posts, number) {
+	                            if (number > 0) {
+	                                return _react2.default.createElement(
+	                                    'div',
+	                                    { key: posts._id.toString(), className: 'blog-post blog-media wow fadeInRight', 'data-wow-duration': '300ms', 'data-wow-delay': '100ms' },
+	                                    _react2.default.createElement(
+	                                        'article',
+	                                        { className: 'media clearfix' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'entry-thumbnail pull-left' },
+	                                            _react2.default.createElement('img', { className: 'img-responsive', src: "images/blog/" + posts.imgUrl, alt: '' }),
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'post-format post-format-gallery' },
+	                                                _react2.default.createElement('i', { className: "fa fa-" + posts.icon })
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'media-body' },
+	                                            _react2.default.createElement(
+	                                                'header',
+	                                                { className: 'entry-header' },
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'entry-date' },
+	                                                    '1394 / 7 / 4'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'h2',
+	                                                    { className: 'entry-title' },
+	                                                    _react2.default.createElement(
+	                                                        'a',
+	                                                        { href: '#' },
+	                                                        posts.title
+	                                                    )
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'entry-content' },
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    null,
+	                                                    posts.description
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'a',
+	                                                    { className: 'btn btn-primary', href: '#' },
+	                                                    posts.btnTitle
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'footer',
+	                                                { className: 'entry-meta' },
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'entry-author' },
+	                                                    _react2.default.createElement('i', { className: 'fa fa-pencil' }),
+	                                                    ' ',
+	                                                    _react2.default.createElement(
+	                                                        'a',
+	                                                        { href: '#' },
+	                                                        posts.author
+	                                                    )
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'entry-category' },
+	                                                    _react2.default.createElement('i', { className: 'fa fa-folder-o' }),
+	                                                    ' ',
+	                                                    _react2.default.createElement(
+	                                                        'a',
+	                                                        { href: '#' },
+	                                                        posts.category
+	                                                    )
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'entry-comments' },
+	                                                    _react2.default.createElement('i', { className: 'fa fa-comments-o' }),
+	                                                    ' ',
+	                                                    _react2.default.createElement(
+	                                                        'a',
+	                                                        { href: '#' },
+	                                                        posts.comments
+	                                                    )
+	                                                )
+	                                            )
+	                                        )
+	                                    )
+	                                );
+	                            }
+	                        })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Blog;
+	}(_react2.default.Component);
+	
+	exports.default = Blog;
 
 /***/ })
 /******/ ]);

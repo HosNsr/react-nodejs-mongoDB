@@ -9,6 +9,9 @@ import portfolioRouter from './api/subApi/Portfolio';
 import aboutRouter from './api/subApi/About';
 import workprocessRouter from './api/subApi/Workprocess';
 import meetteamRouter from './api/subApi/MeetTeam';
+import animatednumberRouter from './api/subApi/AnimatedNumber';
+import testimonialRouter from './api/subApi/Testimonial';
+import blogRouter from './api/subApi/Blog';
 import express from 'express';
 import mongoose from 'mongoose';
 
@@ -67,6 +70,15 @@ server.use('/api/workprocess' , workprocessRouter);
 
 // When use /api/meetteam in API go to apiRouter
 server.use('/api/meetteam' , meetteamRouter);
+
+// When use /api/animatednumber in API go to apiRouter
+server.use('/api/animatednumber' , animatednumberRouter);
+
+// When use /api/testimonial in API go to apiRouter
+server.use('/api/testimonial' , testimonialRouter);
+
+// When use /api/blog in API go to apiRouter
+server.use('/api/blog' , blogRouter);
 
 // Use this folder to Route
 server.use(express.static(__dirname + '/public'));

@@ -148,7 +148,6 @@ class Meetteam extends React.Component {
                                     }else {
                                         contest.idnumber = "Three"                                        
                                     }
-                                    console.log(contest.idnumber)
                                     return(
                                         <div key={contest._id.toString()} className="panel panel-default">
                                             <div className="panel-heading" role="tab" id={"heading" + contest.idnumber}>

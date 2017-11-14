@@ -9,6 +9,9 @@ import Portfolio from './Components/portfolio';
 import About from './Components/about';
 import Workprocess from './Components/work-process';
 import Meetteam from './Components/meet-team';
+import Animatednumber from './Components/animated-number';
+import Testimonial from './Components/testimonial';
+import Blog from './Components/blog';
 
 ReactDOM.render(
     <div>
@@ -38,6 +41,15 @@ ReactDOM.render(
         </section>
         <section id="meet-team">
             <Meetteam />
+        </section>
+        <section id="animated-number">
+            <Animatednumber />
+        </section>
+        <section id="testimonial">
+            <Testimonial />
+        </section>
+        <section id="blog">
+            <Blog />
         </section>
     </div>,
     document.getElementById('root')
