@@ -26,14 +26,17 @@ class Slider extends React.Component {
             <div className="owl-carousel">
                 {
                     this.state.SliderDATA.map((contest) =>{
+                        var divstyle = {
+                            backgroundImage : 'url(images/slider/' + contest.backgroundImages + ')'
+                        }
                         return(
-                            <div key={contest.id.toString()} className="item" style={contest.backgroundImages}>
+                            <div key={contest.id.toString()} className="item" style={divstyle}>
                                 <div className="slider-inner">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col-sm-6">
                                                 <div className="carousel-content">
-                                                    <h2><span> شرکت ما </span>{contest.title}</h2>
+                                                    <h2>{contest.title}</h2>
                                                     <p>{contest.description}</p>
                                                     <a className="btn btn-primary btn-lg" href="#">بیشتر بخوانید</a>
                                                 </div>

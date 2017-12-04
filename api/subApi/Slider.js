@@ -8,9 +8,7 @@ const router = express.Router();
 // schema for my data in mongoDB
 const slidersData = new mongoose.Schema({
     id : Number,
-    backgroundImages : {
-        backgroundImage : String
-    },
+    backgroundImages : String,
     title : String,
     description : String
 });
